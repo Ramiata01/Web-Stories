@@ -3,6 +3,10 @@
 }
 
 .nd .nav {
+    flex-flow: column wrap;
+}
+
+.nd .nav.nav2 {
     display: grid;
     grid-template-columns: 266px 566px;
 }
@@ -47,19 +51,16 @@
     right: 0;
 }
 
-.nd .nav2 {
-    display: grid;
-    grid-template-columns: auto auto;
+.nd .nav3 {
+    height: 724px;
 }
 
-.nd .nav2 .item {
+.nd .nav3 .item {
     font-size: smaller;
     width: fit-content;
     font-weight: 500;
-    text-decoration: none;
-    color: var(--color);
 }
 
-.nd .nav2 .item:hover {
+.nd .nav3 .item:hover {
     text-decoration: underline;
 }

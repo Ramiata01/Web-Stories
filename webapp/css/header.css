@@ -12,6 +12,11 @@ body {
     color: var(--color);
 }
 
+a {
+    color: var(--color);
+    text-decoration: none;
+}
+
 .nd {
     margin: 105px var(--kc2ben);
 }
