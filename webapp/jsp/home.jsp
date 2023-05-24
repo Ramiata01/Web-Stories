@@ -24,6 +24,7 @@
     </li>
   </ul>
   <ul class="nav anh">
+    // load các truyện có trong db
     <c:forEach items="${listA}" var="a">
       <li class="truyen">
         <a class="item" href="page?id=${a.id}">
