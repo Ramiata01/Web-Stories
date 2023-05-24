@@ -67,6 +67,7 @@
     <ul class="nav" style="margin-top: 16px">
         <li class="tieude">DANH SÁCH CHƯƠNG</li>
         <ul class="nav nav3">
+<%-- load ds chap trong db   --%>
         <c:forEach items="${chap}" var="o">
             <li style="margin-left: 30px;">
                 <svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1px;" width="12" height="12"
