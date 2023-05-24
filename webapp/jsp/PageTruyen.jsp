@@ -51,7 +51,7 @@
             <div class="item1" id="name">${info.name.toUpperCase()}</div>
             <div class="item2" id="item2">${a.nhiphan_word(info.introduce)}</div>
             <div style="position: relative" id="nut">
-                <button class="item3" onclick="chang_height()">
+                <button class="item3" onclick="chang_height()">   <%--khi nhấn nút hiện full nội dung--%>
                     Xem thêm
                     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor"
                          class="bi bi-chevron-double-right" style="margin-bottom: 3px;" viewBox="0 0 16 16">
