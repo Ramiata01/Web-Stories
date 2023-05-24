@@ -11,52 +11,7 @@
 <head>
     <title>Title</title>
     <jsp:include page="header.jsp"></jsp:include>
-
-    <style>
-        .nd .tieude {
-            width: fit-content;
-            font-weight: 500;
-            font-size: large;
-            padding: 7px 2px 7px 0;
-            border-bottom: solid var(--color) 1px;
-        }
-
-        .nd .nav {
-            display: grid;
-            grid-template-columns: 208px 465px 139px;
-            grid-auto-rows: 89px;
-        }
-
-        .nd .nav .item1 {
-            width: 182px;
-            height: 82px;
-            object-fit: cover;
-        }
-
-        .nd .nav .item2 {
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        .nd .nav .item2 .ten {
-            font-size: large;
-            font-weight: 700;
-        }
-
-        .icon {
-            margin-bottom: 5px;
-        }
-
-        .link {
-            color: var(--color-link);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .link:hover {
-            text-decoration: underline black;
-        }
-    </style>
+    <link rel="stylesheet" href="css/StoriesfromCate.css">
 </head>
 <body>
 
@@ -91,14 +46,8 @@
 <script>
     let name = "${nametl.name}";
     console.log(name);
-    document.getElementById("header_bottom").innerHTML = '<a onmouseover="changcolor(this)" onmouseout="normalcolor(this)" style="text-decoration: none; color: black;" href="index.jsp">Truyện </a>/ ' +
-        '<a onmouseover="changcolor(this)" onmouseout="normalcolor(this)" style="text-decoration: none; color: black;" href="the-loai?id=${nametl.id}">'+ name + '</a>';
-    function changcolor(x) {
-        x.style.color = "gray";
-    }
-    function normalcolor(x) {
-        x.style.color = "black"
-    }
+    document.getElementById("header_bottom").innerHTML = '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none; color: black;" href="index.jsp">Truyện </a>/ ' +
+        '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none; color: black;" href="the-loai?id=${nametl.id}">'+ name + '</a>';
 </script>
 </body>
 </html>

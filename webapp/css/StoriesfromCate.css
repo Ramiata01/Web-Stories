@@ -1,0 +1,43 @@
+.nd .tieude {
+    width: fit-content;
+    font-weight: 500;
+    font-size: large;
+    padding: 7px 2px 7px 0;
+    border-bottom: solid var(--color) 1px;
+}
+
+.nd .nav {
+    display: grid;
+    grid-template-columns: 208px 465px 139px;
+    grid-auto-rows: 89px;
+}
+
+.nd .nav .item1 {
+    width: 182px;
+    height: 82px;
+    object-fit: cover;
+}
+
+.nd .nav .item2 {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nd .nav .item2 .ten {
+    font-size: large;
+    font-weight: 700;
+}
+
+.icon {
+    margin-bottom: 5px;
+}
+
+.link {
+    color: var(--color-link);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.link:hover {
+    text-decoration: underline black;
+}

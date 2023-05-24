@@ -1,0 +1,69 @@
+body {
+    background-color: white;
+}
+
+.nd {
+    margin-top: 21px;
+}
+
+.td {
+    color: rgb(102,153,0);
+    font-size: x-large;
+    text-align: center;
+    font-weight: 500;
+}
+
+.tachdong-top {
+    background: url(//static.8cache.com/img/spriteimg_new_white_op.png) -200px -27px no-repeat;
+    width: 59px;
+    height: 20px;
+    margin: 12px auto 10px;
+}
+
+.tachdong-bottom {
+    background: url(//static.8cache.com/img/spriteimg_new_white_op.png) 0 -51px no-repeat;
+    width: 277px;
+    height: 35px;
+    margin: 30px auto;
+}
+
+.bt-chuong {
+    --button-bg-color: rgb(92,184,92);
+    --button-radius: 4px;
+    width: 170px;
+    height: 47px;
+    background-color: var(--button-bg-color);
+    color: white;
+    border: 1px solid var(--button-bg-color);
+}
+
+.bt-chuong:hover {
+    background-color: rgb(69, 140, 69);
+}
+
+.bt-chuong.left {
+    border-top-left-radius: var(--button-radius);
+    border-bottom-left-radius: var(--button-radius);
+}
+.bt-chuong.right {
+    border-top-right-radius: var(--button-radius);
+    border-bottom-right-radius: var(--button-radius);
+}
+
+.bt-chuong .icon {
+    margin-bottom: 4px;
+}
+
+.kv_truyen {
+    font-size: x-large;
+    color: black;
+}
+
+button:disabled,
+button[disabled]{
+    background-color: rgb(191,223,191);
+    border-color: rgb(191,223,191);
+    color: rgb(242,245,242);
+    cursor: auto;
+    pointer-events: none;
+}
