@@ -1,0 +1,102 @@
+body {
+    --kc2ben: 11.8%;
+    --color: rgb(78,78,78);
+    --colortoi: rgb(177, 177, 177);
+    --colortdtoi: rgb(255, 255, 255);
+    --color-link: black;
+    --background-color: rgb(235,235,235);
+    --background-color-toi: rgb(34, 34, 34);
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--color);
+}
+
+.nd {
+    margin: 105px var(--kc2ben);
+}
+
+.header {
+    --color-header: white;
+    --background-color-header: rgb(20, 66, 93);
+    --background-color-headertoi: rgb(36, 47, 57);
+    --background-color-headerbottom: white;
+    --background-color-headerbottomtoi: rgb(46, 55 ,64);
+    --background-color-click: rgb(47, 86, 109);
+    display: block;
+    position: fixed;
+    height: 82px;
+    width: 100%;
+    top: 0;
+}
+
+.header .top {
+    background-color: var(--background-color-header);
+    height: 50px;
+    position: relative;
+    padding: 0 var(--kc2ben);
+}
+
+.header .top .logo {
+    width: 196px;
+    height: 36px;
+    object-fit: none;
+    object-position: 0 0;
+    position: absolute;
+    top: 10%;
+}
+
+.header .top .nav .nav-link {
+    padding: 13px 17px;
+    color: var(--color-header);
+}
+
+.header .top .nav .nav-link:focus {
+    background-color: var(--background-color-click);
+}
+
+.header .top .nav .dropdown-menu {
+    background-color: var(--background-color-click);
+    border-color: var(--background-color-click);
+    border-radius: 0;
+}
+
+.header .top .nav .dropdown-menu .dropdown-item {
+    color: var(--color-header);
+}
+
+.header .top .nav .dropdown-menu .dropdown-item:hover {
+    background-color: var(--background-color-header);
+}
+
+.header .top .nav .d-flex {
+    margin-top: 8px;
+    margin-left: auto;
+}
+
+.header .top .nav .d-flex .btn {
+    padding-top: 0.2rem;
+    padding-bottom: 0.26rem;
+    height: 77%;
+    color: black;
+    border: 0;
+}
+
+.header .top .nav .d-flex .btn:hover {
+    background-color: darkgray;
+}
+
+.header .top .nav .d-flex .form-control {
+    height: 77%;
+}
+
+.header .top .nav .d-flex .me-2 {
+    margin-right: -2.5rem !important;
+}
+
+.header .bottom {
+    padding: 5px var(--kc2ben);
+    background-color: var(--background-color-headerbottom);
+    font-size: small;
+    font-weight: 500;
+}
