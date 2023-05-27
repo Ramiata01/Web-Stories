@@ -31,7 +31,9 @@ public class DocTruyen extends HttpServlet {
 
             request.getRequestDispatcher("jsp/ndTruyen.jsp").forward(request, response);
         } catch (NumberFormatException ex) {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            response.sendRedirect("home");
+        } catch (StringIndexOutOfBoundsException ex) {
+            response.sendRedirect("home");
         }
 
     }

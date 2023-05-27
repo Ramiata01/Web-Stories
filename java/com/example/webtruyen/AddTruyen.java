@@ -41,7 +41,9 @@ public class AddTruyen extends HttpServlet {
             }
         }
 
-        request.getRequestDispatcher("Admin").forward(request, response);
+        new ToUpdateInfo().uploadImg(request, "image", id);
+
+        request.getRequestDispatcher("admin").forward(request, response);
 
     }
 }

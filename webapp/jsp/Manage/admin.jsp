@@ -56,7 +56,7 @@
   <c:forEach items="${listA}" var="o">
     <tr>
       <td>${o.id}</td>
-      <td>${o.name}</td>
+      <td><a href="page?id=${o.id}">${o.name}</a></td>
       <td><img src="./imgs/${o.img}" style="height: 150px;"></td>
       <td>${c.getByID(o.id).author}</td>
       <td>${c.listCateByIdTruyen(o.id)}</td>

@@ -27,7 +27,9 @@ public class ToPageTruyen extends HttpServlet {
             request.setAttribute("chap", chapt);
             request.getRequestDispatcher("jsp/PageTruyen.jsp").forward(request, response);
         } catch (NumberFormatException ex) {
-            request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
+            response.sendRedirect("home");
+        } catch (StringIndexOutOfBoundsException ex) {
+            response.sendRedirect("home");
         }
     }
 
@@ -46,7 +48,7 @@ public class ToPageTruyen extends HttpServlet {
                     new InsertTruyen().addChap(String.valueOf(i), nameChap, ndChap, id);
                 }
             }
-            request.getRequestDispatcher("/admin").forward(request, response);
+            response.sendRedirect("admin");
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }

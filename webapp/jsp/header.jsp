@@ -17,52 +17,6 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/header.css">
     <script src="JavaScript/header.js"></script>
-
-    <style>
-        .header {
-            z-index: 1;
-        }
-    </style>
-
-    <script>
-        function changcolorall(x) {
-            console.log(x.innerHTML);
-            let d = new Date();
-            d.setTime(d.getTime() + (24*60*60*1000));
-            let expires = "expires="+d.toUTCString();
-            document.cookie = "color=" + x.value + "; " + expires;
-            setcolor(x);
-        }
-
-        function getCookie(cname) {
-            let name = cname + "=";
-            let ca = document.cookie.split(';');
-            for(let i=0; i<ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1);
-                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-            }
-            return "";
-        }
-
-        function setcolor(x) {
-            let color = getCookie("color")
-            if(color == "black") {
-                document.querySelector("body").style.backgroundColor = "var(--background-color-toi)";
-                document.querySelector("body").style.color = "var(--colortoi)";
-                document.querySelector(".header .top").style.backgroundColor = "var(--background-color-headertoi)";
-                document.querySelector(".header .bottom").style.backgroundColor = "var(--background-color-headerbottomtoi)";
-                x.options[1].selected = true;
-            }else if(color == "" || color == "action") {
-                document.querySelector("body").style.backgroundColor = "var(--background-color)";
-                document.querySelector("body").style.color = "var(--color)";
-                document.querySelector(".header .top").style.backgroundColor = "var(--background-color-header)";
-                document.querySelector(".header .bottom").style.backgroundColor = "var(--background-color-headerbottom)";
-                document.querySelector(".header .bottom").style.backgroundColor = "var(--background-color-headerbottom)";
-                x.options[0].selected = true;
-            }
-        }
-    </script>
 </head>
 <body>
 <div class="header" id="header">
@@ -72,7 +26,7 @@
         </a>
         <ul class="nav" style="margin-left: 17.3%;">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Danh sách</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Truyện mới cập nhật</a></li>
@@ -90,9 +44,9 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Thể loại</a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu tl">
                     <jsp:useBean id="i" class="dao.Dao" scope="request"></jsp:useBean>
                     <c:forEach items="${i.category}" var="o">
                         <li><a class="dropdown-item" href="the-loai?id=${o.id}">${o.name}</a></li>
@@ -100,7 +54,7 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Phân loại theo Chương</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Dưới 100 chương</a></li>
@@ -111,7 +65,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Tùy chỉnh</a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-item">
@@ -141,13 +95,7 @@
 
 <script>
     let color = document.getElementById("color");
-    // if(color.value == "black") {
-    //     document.querySelector("body").style.backgroundColor = "var(--background-color-toi)";
-    // }else {
-    //     document.querySelector("body").style.backgroundColor = "var(--background-color)";
-    // }
     setcolor(color);
-
 
 </script>
 </body>

@@ -5,11 +5,10 @@ import enbity.Category;
 import enbity.Chapter;
 import enbity.Truyen;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class Dao {
@@ -126,27 +125,33 @@ public class Dao {
         return categoryList.substring(0, categoryList.length() - 2); //khong lay dau phay cuoi cung
     }
 
-    public List<Truyen> getTruyenByCate(int id_cate) {
-        List<Truyen> truyenList = new ArrayList<>();
-        String sql = "SELECT * FROM webtruyen.truyen, truyen_category as lk, category, author\n" +
-                "where category.id_category ="  + id_cate + " and truyen.id_truyen = lk.id_truyen and lk.id_category = category.id_category\n" +
-                "and truyen.id_author = author.id_author";
+    public List<Chapter> getTruyenByCate(int id_cate) {
+        List<Chapter> chapterList = new ArrayList<>();
+        String sql = "SELECT truyen.id_truyen, truyen.name, truyen.image, author.name, max(chapter.id_chapter) \n" +
+                "FROM webtruyen.truyen, truyen_category as lk, category, author, chapter\n" +
+                "where category.id_category = ? and truyen.id_truyen = lk.id_truyen and lk.id_category = category.id_category\n" +
+                                "and truyen.id_author = author.id_author and truyen.id_truyen = chapter.id_truyen\n" +
+                "group by truyen.id_truyen";
         try {
             Connection conn = new DBconnect().getConnect();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id_cate);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                truyenList.add(new Truyen(rs.getInt(1),
+                String time = tinhTime(rs.getInt(1), rs.getString(5));
+                chapterList.add(new Chapter(rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(8),
-                        rs.getString(14)));
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5), time));
             }
+            Collections.sort(chapterList, new TimeComparator());
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return truyenList;
+        return chapterList;
     }
 
     public List<Chapter> getChapterByIdTruyen (int id) {
@@ -191,10 +196,82 @@ public class Dao {
         return chapter;
     }
 
+    public List<Chapter> getLatestStories() {
+        List<Chapter> list = new ArrayList<>();
+        Truyen truyen = null;
+
+        try {
+            Connection conn = new DBconnect().getConnect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id_truyen, max(id_chapter) FROM webtruyen.chapter\n" +
+                    "group by id_truyen");
+
+            while (rs.next()) {
+                int id_tr = rs.getInt(1);
+                truyen = getByID(id_tr);
+                String cate = listCateByIdTruyen(id_tr) + ",";
+                String time = tinhTime(id_tr, rs.getString(2));
+                list.add(new Chapter(rs.getInt(1),
+                        truyen.getName(), cate.substring(0, cate.indexOf(",", cate.indexOf(",") + 1)),
+                        rs.getString(2), time));
+            }
+            Collections.sort(list, new TimeComparator());   //sắp xếp theo tg sớm nhất
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String tinhTime(int tr, String ch) {
+        String sql = "SELECT year(time), month(time), datediff(now(), time), hour(time), minute(time), second(time) \n" +
+                "FROM webtruyen.chapter where id_truyen = ? and id_chapter = ?";
+        Chapter chapter = null;
+
+        try {
+            Connection conn = new DBconnect().getConnect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, tr);
+            stmt.setString(2, ch);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR) - rs.getInt(1);
+                if (year != 0) return year + " năm";
+
+                // Trả về giá trị từ 0 - 11
+                int month = (c.get(Calendar.MONTH) + 1) - rs.getInt(2);
+                if (month != 0) return month + " tháng";
+
+                int day = rs.getInt(3);
+                if (day != 0) return day + " ngày";
+
+                int hour = c.get(Calendar.HOUR_OF_DAY) - rs.getInt(4);
+                if (hour != 0) return hour + " giờ";
+
+                int minute = c.get(Calendar.MINUTE) - rs.getInt(5);
+                if (minute != 0) return minute + " phút";
+
+                int second = c.get(Calendar.SECOND) - rs.getInt(6);
+                if (second != 0) return second + " giây";
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
     public static void main(String[] args) {
-//        List<Chapter> chapters = new Dao().getChapterByIdTruyen(1);
-//        for (Chapter c: chapters) {
-//            System.out.println(c.getTenChuong());
-//        }
+        List<Chapter> chapters = new Dao().getLatestStories();
+        Collections.sort(chapters, new TimeComparator());
+        for (Chapter c: chapters) {
+            System.out.println(c.getImg());
+        }
+//        String cate = new Dao().listCateByIdTruyen(1);
+//        System.out.println(cate.substring(0, cate.indexOf(",", cate.indexOf(",") + 1)));
     }
 }

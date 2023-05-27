@@ -30,7 +30,9 @@ public class ToUpdateInfo extends HttpServlet {
             request.setAttribute("listB", cateB);
             request.setAttribute("chap", chapt);
         } catch (NumberFormatException ex) {
-            request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
+            response.sendRedirect("home");
+        } catch (StringIndexOutOfBoundsException ex) {
+            response.sendRedirect("home");
         }
         request.getRequestDispatcher("jsp/Manage/updateInfo.jsp").forward(request, response);
 
@@ -84,40 +86,41 @@ public class ToUpdateInfo extends HttpServlet {
             request.setAttribute("success", "Update Success");
 
             // upload ảnh mới
-            Part file = request.getPart("image");
-            String imageFile = file.getSubmittedFileName();
-
-            if (!imageFile.equals("")) {
-                String uploadPath = "E:/LTweb/createWeb/webtruyen/src/main/webapp/imgs/" + imageFile;
-
-                try {
-                    FileOutputStream fos = new FileOutputStream(uploadPath);
-                    InputStream is = file.getInputStream();
-
-                    byte[] data = new byte[is.available()];
-                    is.read(data);
-                    fos.write(data);
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                int row = new EditTruyen().UpdateImg(id, imageFile);
-                String s = "";
-                if (row <= 0) {
-                    s = "Please upload file name less than 50 words";
-                    request.removeAttribute("success");
-                    request.setAttribute("nosuccess", s);
-                }
-            }
+            uploadImg(request, "image", id);
         }
 
         doGet(request, response);
     }
 
-    public void destroy() {
+    public void uploadImg(HttpServletRequest request, String img, int id) throws ServletException, IOException {
+        Part file = request.getPart(img);
+        String imageFile = file.getSubmittedFileName();
+
+        if (!imageFile.equals("")) {
+            String uploadPath = "E:/LTweb/createWeb/webtruyen/src/main/webapp/imgs/" + imageFile;
+
+            try {
+                FileOutputStream fos = new FileOutputStream(uploadPath);
+                InputStream is = file.getInputStream();
+
+                byte[] data = new byte[is.available()];
+                is.read(data);
+                fos.write(data);
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            int row = new EditTruyen().UpdateImg(id, imageFile);
+            String s = "";
+            if (row <= 0) {
+                s = "Please upload file name less than 50 words";
+                request.removeAttribute("success");
+                request.setAttribute("nosuccess", s);
+            }
+        }
     }
 
 

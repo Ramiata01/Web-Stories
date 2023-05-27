@@ -16,6 +16,7 @@
     width: 182px;
     height: 82px;
     object-fit: cover;
+    object-position: 0 35%;
 }
 
 .nd .nav .item2 {
@@ -28,12 +29,15 @@
     font-weight: 700;
 }
 
+.nd .nav .item2 .chap {
+    color: var(--a-chang1);
+}
+
 .icon {
     margin-bottom: 5px;
 }
 
 .link {
-    color: var(--color-link);
     text-decoration: none;
     letter-spacing: -0.5px;
 }

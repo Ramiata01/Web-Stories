@@ -2,6 +2,7 @@ package com.example.webtruyen;
 
 import dao.Dao;
 import enbity.Category;
+import enbity.Chapter;
 import enbity.Truyen;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -16,13 +17,15 @@ public class TheLoai extends HttpServlet {
         Dao dao = new Dao();
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            List<Truyen> list = dao.getTruyenByCate(id);
+            List<Chapter> list = dao.getTruyenByCate(id);
             Category category = dao.getCatById(id);
             request.setAttribute("listA", list);
             request.setAttribute("nametl", category);
             request.getRequestDispatcher("jsp/TruyenByCate.jsp").forward(request, response);
         } catch (NumberFormatException ex) {
-            request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
+            response.sendRedirect("home");
+        } catch (StringIndexOutOfBoundsException ex) {
+            response.sendRedirect("home");
         }
 
     }

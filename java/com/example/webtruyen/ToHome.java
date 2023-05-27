@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 
 import dao.Dao;
+import enbity.Chapter;
 import enbity.Truyen;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -14,13 +15,11 @@ public class ToHome extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        HttpSession session = request.getSession();
-
         Dao dao = new Dao();
         List<Truyen> listA = dao.getAll();
+        List<Chapter> listB = dao.getLatestStories();
         request.setAttribute("listA", listA);
-        session.setAttribute("color_sang", 1);
-        session.setAttribute("color_toi", 0);
+        request.setAttribute("listB", listB);
         request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
     }
 }

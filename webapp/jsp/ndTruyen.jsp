@@ -12,6 +12,7 @@
     <title>${tr.name} - ${nd.tenChuong}</title>
     <jsp:include page="header.jsp"></jsp:include>
     <link rel="stylesheet" href="css/ndChap.css">
+    <script src="JavaScript/ndChap.js"></script>
 </head>
 <body>
 <jsp:useBean id="a" class="dao.Thembr"></jsp:useBean>
@@ -83,15 +84,12 @@
 </div>
 
 <script>
-    let head_bottom = document.getElementById("header_bottom");
-    let ndhead = '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none; color: var(--color)" href="index.jsp">Truyện </a>/ ';
+    setcolor(color);
     let name = "${tr.name}";
     let chuong = "Chương ${nd.id_chap}: ${nd.tenChuong}";
-    head_bottom.style.backgroundColor = "rgb(236,236,236)";
-    head_bottom.innerHTML = ndhead +
-    '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none; color: var(--color)" href="page?id=${tr.id}">'+ name + ' </a>/ ' +
-    '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none; color: var(--color)" href="doctruyen?tr=${tr.id}&ch=${nd.id_chap}">'+ chuong + '</a>';
-
+    let link = '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none" href="page?id=${tr.id}">'+ name + ' </a>/ ' +
+    '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none;" href="doctruyen?tr=${tr.id}&ch=${nd.id_chap}">'+ chuong + '</a>';
+    bottom_link(link)
     document.getElementById("header").style.position = "relative";
 
     let chap = "${nd.id_chap}";
@@ -108,10 +106,6 @@
     function chuyenchap(x) {
         let url = "doctruyen?tr=${tr.id}&ch=" + x.value;
         window.location = url;
-    }
-    function showandhidden(x, y) {
-        document.getElementById(x).hidden = false;
-        document.getElementById(y).hidden = true;
     }
 </script>
 </body>

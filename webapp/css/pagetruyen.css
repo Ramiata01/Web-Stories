@@ -56,11 +56,12 @@
 }
 
 .nd .nav3 .item {
+    margin-left: 30px;
+    padding: 2px 0;
+}
+
+.nd .nav3 .item_link {
     font-size: smaller;
     width: fit-content;
     font-weight: 500;
-}
-
-.nd .nav3 .item:hover {
-    text-decoration: underline;
 }
