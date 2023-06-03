@@ -29,18 +29,18 @@
                 <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Danh sách</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Truyện mới cập nhật</a></li>
-                    <li><a class="dropdown-item" href="#">Truyện Hot</a></li>
-                    <li><a class="dropdown-item" href="#">Truyện Full</a></li>
-                    <li><a class="dropdown-item" href="#">Tiên Hiệp Hay</a></li>
-                    <li><a class="dropdown-item" href="#">Kiếm Hiệp Hay</a></li>
-                    <li><a class="dropdown-item" href="#">Truyện Teen Hay</a></li>
-                    <li><a class="dropdown-item" href="#">Ngôn Tình Hay</a></li>
-                    <li><a class="dropdown-item" href="#">Ngôn Tình Ngược</a></li>
-                    <li><a class="dropdown-item" href="#">Ngôn Tình Sủng</a></li>
-                    <li><a class="dropdown-item" href="#">Ngôn Tình Hài</a></li>
-                    <li><a class="dropdown-item" href="#">Đam Mỹ Hài</a></li>
-                    <li><a class="dropdown-item" href="#">Đam Mỹ Hay</a></li>
+                    <li><a class="dropdown-item white" href="#">Truyện mới cập nhật</a></li>
+                    <li><a class="dropdown-item white" href="#">Truyện Hot</a></li>
+                    <li><a class="dropdown-item white" href="#">Truyện Full</a></li>
+                    <li><a class="dropdown-item white" href="#">Tiên Hiệp Hay</a></li>
+                    <li><a class="dropdown-item white" href="#">Kiếm Hiệp Hay</a></li>
+                    <li><a class="dropdown-item white" href="#">Truyện Teen Hay</a></li>
+                    <li><a class="dropdown-item white" href="#">Ngôn Tình Hay</a></li>
+                    <li><a class="dropdown-item white" href="#">Ngôn Tình Ngược</a></li>
+                    <li><a class="dropdown-item white" href="#">Ngôn Tình Sủng</a></li>
+                    <li><a class="dropdown-item white" href="#">Ngôn Tình Hài</a></li>
+                    <li><a class="dropdown-item white" href="#">Đam Mỹ Hài</a></li>
+                    <li><a class="dropdown-item white" href="#">Đam Mỹ Hay</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -49,7 +49,7 @@
                 <ul class="dropdown-menu tl">
                     <jsp:useBean id="i" class="dao.Dao" scope="request"></jsp:useBean>
                     <c:forEach items="${i.category}" var="o">
-                        <li><a class="dropdown-item" href="the-loai?id=${o.id}">${o.name}</a></li>
+                        <li><a class="dropdown-item white" href="the-loai?id=${o.id}">${o.name}</a></li>
                     </c:forEach>
                 </ul>
             </li>
@@ -57,10 +57,10 @@
                 <a class="nav-link dropdown-toggle white" data-bs-toggle="dropdown" href="#" role="button"
                    aria-expanded="false">Phân loại theo Chương</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dưới 100 chương</a></li>
-                    <li><a class="dropdown-item" href="#">100 - 500 chương</a></li>
-                    <li><a class="dropdown-item" href="#">500 - 1000 chương</a></li>
-                    <li><a class="dropdown-item" href="#">Trên 1000 chương</a></li>
+                    <li><a class="dropdown-item white" href="#">Dưới 100 chương</a></li>
+                    <li><a class="dropdown-item white" href="#">100 - 500 chương</a></li>
+                    <li><a class="dropdown-item white" href="#">500 - 1000 chương</a></li>
+                    <li><a class="dropdown-item white" href="#">Trên 1000 chương</a></li>
                 </ul>
             </li>
 
@@ -77,8 +77,8 @@
                     </li>
                 </ul>
             </li>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form action="tim-kiem" class="d-flex" role="search" enctype="multipart/form-data">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-search" viewBox="0 0 16 16">

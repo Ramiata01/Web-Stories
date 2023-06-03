@@ -1,5 +1,6 @@
 package com.example.webtruyen;
 
+import connect.DBconnect;
 import dao.Dao;
 import enbity.Category;
 import enbity.Chapter;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.*;
 import java.util.List;
 
 @WebServlet("/the-loai")

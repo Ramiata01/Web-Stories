@@ -266,12 +266,25 @@ public class Dao {
     }
 
     public static void main(String[] args) {
-        List<Chapter> chapters = new Dao().getLatestStories();
-        Collections.sort(chapters, new TimeComparator());
-        for (Chapter c: chapters) {
-            System.out.println(c.getImg());
+        String tk = "%" + "linh" + "%";
+        String sql = "SELECT truyen.id_truyen, truyen.name, truyen.image, author.name, max(chapter.id_truyen) FROM webtruyen.author, truyen, chapter\n" +
+                "where author.id_author = truyen.id_author and chapter.id_truyen = truyen.id_truyen and (author.name like ? or truyen.name like ?) \n" +
+                "group by author.id_author, truyen.id_truyen";
+        List<Chapter> chapterList = new ArrayList<>();
+
+        try {
+            Connection conn = new DBconnect().getConnect();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, tk);
+            stmt.setString(2, tk);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                System.out.println(rs.getString(2));
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-//        String cate = new Dao().listCateByIdTruyen(1);
-//        System.out.println(cate.substring(0, cate.indexOf(",", cate.indexOf(",") + 1)));
     }
 }

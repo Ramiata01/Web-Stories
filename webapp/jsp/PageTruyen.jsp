@@ -23,6 +23,7 @@
 
 <jsp:useBean id="a" class="dao.Thembr"></jsp:useBean>
 <c:set var="row" value="2"></c:set>
+<c:set var="tl" value="0"></c:set>
 
 <div class="nd">
     <ul class="nav nav2">
@@ -33,7 +34,14 @@
             </div>
             <div style="font-size: small; margin-top: 27px;">
                 <div><b>Tác giả: </b> ${info.author}</div>
-                <div><b>Thể loại: </b>${cate}</div>
+                <div>
+                    <b>Thể loại: </b>
+                    <c:forEach items="${cate}" var="o">
+                        <c:if test="${tl != 0}">, </c:if>
+                        <a href="the-loai?id=${o.id}">${o.name}</a>
+                        <c:set var="tl" value="1"></c:set>
+                    </c:forEach>
+                </div>
                 <div>
                     <b>Trạng thái: </b>
                     <c:choose>

@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Đọc truyện online</title>
+    <title>Đọc truyện online, đọc truyện hay</title>
     <link rel="stylesheet" href="css/home.css">
 
   <style>
@@ -73,7 +73,7 @@
           </li>
           <li><a href="page?id=${o.id}">${o.name}</a></li>
         </td>
-        <td style="width: 200px">${o.img}</td>
+        <td style="width: 200px">${o.img}</td>    <%--thay img -> thể loại--%>
         <td style="width: 164px;"><a style="color: var(--a-chang1)" href="doctruyen?tr=${o.id}&ch=${o.id_chap}">Chương ${o.id_chap}</a></td>
         <td style="width: 114px">${o.time} trước</td>
       </tr>

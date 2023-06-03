@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.Dao;
 import dao.InsertTruyen;
+import enbity.Category;
 import enbity.Chapter;
 import enbity.Truyen;
 import jakarta.servlet.ServletException;
@@ -20,10 +21,11 @@ public class ToPageTruyen extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             Truyen truyen = dao.getByID(id);
-            String cate = dao.listCateByIdTruyen(id);
+//            String cate = dao.listCateByIdTruyen(id);
+            List<Category> cates = dao.getCategoryByIdTruyen(id);
             List<Chapter> chapt = dao.getChapterByIdTruyen(id);
             request.setAttribute("info", truyen);
-            request.setAttribute("cate", cate);
+            request.setAttribute("cate", cates);
             request.setAttribute("chap", chapt);
             request.getRequestDispatcher("jsp/PageTruyen.jsp").forward(request, response);
         } catch (NumberFormatException ex) {

@@ -47,6 +47,7 @@
     let name = "${nametl.name}";
     let link = '<a onmouseover="gachchan(this)" onmouseout="khonggachchan(this)" style="text-decoration: none;" href="the-loai?id=${nametl.id}">'+ name + '</a>';
     bottom_link(link);
+
 </script>
 </body>
 </html>

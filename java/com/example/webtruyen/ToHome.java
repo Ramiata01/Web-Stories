@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 
 import dao.Dao;
+import enbity.Category;
 import enbity.Chapter;
 import enbity.Truyen;
 import jakarta.servlet.ServletException;
